@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/idBSDialog"
+    android:background="@color/blue_shade_1"
+    >
+
+    <TextView
+        android:id="@+id/idTVTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:layout_marginLeft="8dp"
+        android:text="Title Book"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/idImgv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/idTVTitle"
+        android:padding="4dp"
+        android:src="@mipmap/ic_launcher" />
+    <TextView
+        android:id="@+id/idTVDesc"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_below="@+id/idTVKind"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:layout_toRightOf="@+id/idImgv"
+        android:padding="2dp"
+        android:text="book description"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="italic"
+        android:scrollbars = "vertical"
+        />
+
+    <TextView
+        android:id="@+id/idTVKind"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idTVTitle"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toRightOf="@+id/idImgv"
+        android:padding="2dp"
+
+        android:text="kind  Book"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/idTVPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idTVDesc"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_toRightOf="@+id/idImgv"
+        android:padding="2dp"
+        android:text="Price"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:textStyle="italic" />
+
+    <LinearLayout
+        android:layout_margin="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+ android:layout_below="@+id/idImgv"
+        >
+
+
+
+        <Button
+            android:id="@+id/idBtnEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:padding="1dp"
+            android:text="Edit"
+            android:textColor="@color/white"
+
+            />
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
