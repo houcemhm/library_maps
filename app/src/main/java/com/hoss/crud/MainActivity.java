@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements BookRVAdapter.Boo
 
     private RecyclerView bookRV;
     private ProgressBar loadingPB;
-    private FloatingActionButton addFAB,locFAB;
+    private FloatingActionButton addFAB, locFAB;
     private RelativeLayout bottomSheetRL;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -50,12 +51,12 @@ public class MainActivity extends AppCompatActivity implements BookRVAdapter.Boo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        auth=FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
 
         bookRV = findViewById(R.id.idRVBooks);
         loadingPB = findViewById(R.id.idpBLoiding);
         addFAB = findViewById(R.id.idFABAdd);
-        locFAB=findViewById(R.id.idFAPosition);
+        locFAB = findViewById(R.id.idFAPosition);
         bottomSheetRL = findViewById(R.id.idBSDialog);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements BookRVAdapter.Boo
         locFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,MapsActivity.class));
+                startActivity(new Intent(MainActivity.this, MapsActivity.class));
             }
         });
 
@@ -89,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements BookRVAdapter.Boo
     @Override
     protected void onStart() {
         super.onStart();
+        FirebaseUser user = auth.getCurrentUser();
+        if (user == null) {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }
         getAllBooks();
     }
 
@@ -155,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements BookRVAdapter.Boo
         Button editBtn = layout.findViewById(R.id.idBtnEdit);
 
 
-        titleTV.setText(book.getTitle()+" by "+book.getAuthor());
+        titleTV.setText(book.getTitle() + " by " + book.getAuthor());
         descTV.setText(book.getDesc());
         priceTV.setText(book.getPrice());
         kindTV.setText(book.getKind());
@@ -170,7 +175,6 @@ public class MainActivity extends AppCompatActivity implements BookRVAdapter.Boo
                 startActivity(i);
             }
         });
-
 
 
     }
@@ -190,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements BookRVAdapter.Boo
                 Toast.makeText(MainActivity.this, "User logged out", Toast.LENGTH_SHORT).show();
                 auth.signOut();
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                this.finish();
 
             case R.id.home:
                 startActivity(new Intent(MainActivity.this, MainActivity.class));
